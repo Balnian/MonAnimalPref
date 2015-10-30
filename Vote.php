@@ -15,7 +15,7 @@ if(isset($_POST['Animal'])){
     if(!array_key_exists($_POST['Animal'],$animaux) && isset($_POST['TB_Ajout'])){
 
         if($_POST['TB_Ajout']!="Ajout"){
-            $animaux[$_POST['TB_Ajout']]=2;
+            $animaux[$_POST['TB_Ajout']]=1;
             HEADER("Location: index.php");
         }
         else{
