@@ -65,3 +65,21 @@ function WriteTitle()
             return $Titre;
     }
 }
+
+function GetGraphColor($color,$index,$elementCount)
+{
+    $rgb="";
+    switch($color)
+    {
+        case "Red":
+            $rgb = round(255/($elementCount+1)*($index+1)).",0,0";
+            break;
+        case "Green":
+            $rgb = "0,".round(255/($elementCount+1)*($index+1)).",0";
+            break;
+        default:
+            $rgb = "0,0,".round(255/($elementCount+1)*($index+1));
+            break;
+    }
+    return $rgb;
+}

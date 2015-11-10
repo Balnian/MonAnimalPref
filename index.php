@@ -6,8 +6,20 @@
  * Time: 14:55
  */
 include "Fonction.php";
-include "/Layout/Layout_Head.php";
 
+
+$couleur = "Blue";
+if(isset($_COOKIE["Couleur"]))
+{
+    $couleur = $_COOKIE["Couleur"];
+}
+else
+{
+    $expiration = time() + (365*24*60*60);
+    setcookie("Couleur", "Blue", $expiration);
+}
+
+include "/Layout/Layout_Head.php";
 ?>
 
     <div class="container">
@@ -20,7 +32,7 @@ include "/Layout/Layout_Head.php";
                     <?php
 
                     $animaux = GetValuesFromCSV("Animaux.csv");
-
+                    $compteur = 0;
                     if(count($animaux)>0){
                         foreach ($animaux as $key => $value){
                             if(($vide=!empty($value)) && !empty($key))
@@ -30,8 +42,12 @@ include "/Layout/Layout_Head.php";
                                     <td><?php echo $key; ?></td>
                                     <td><?php echo$value; ?></td>
                                     <td>
-
-                                        <meter value="<?php echo $value; ?>" min="0" max="<?php echo array_sum($animaux); ?>" ><?php echo $value/array_sum($animaux); ?> </meter>
+                                        <div class="col s10">
+                                        <div class="meter-gauge">
+                                            <span style="background-color: rgb(<?php echo GetGraphColor($couleur,$compteur,count($animaux)); $compteur++;  ?>);width:<?php echo round(($value/array_sum($animaux))*100,2,PHP_ROUND_HALF_EVEN); ?>%;"></span>
+                                        </div>
+                                        </div>
+                                            <!--<meter value="<?php echo $value; ?>" min="0" max="<?php echo array_sum($animaux); ?>" ><?php echo $value/array_sum($animaux); ?> </meter>-->
                                         <span class="chip"><?php echo round(($value/array_sum($animaux))*100,2,PHP_ROUND_HALF_EVEN); ?>%</span>
 
                                     </td>
@@ -61,7 +77,23 @@ include "/Layout/Layout_Head.php";
                 </table>
             </div>
             <div class="col s12 l6">
-
+                <form method="post">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col s12 m4">
+                                        <input class="with-gap" name="Couleur" type="radio"
+                                    </div>
+                                    <div class="col s12 m4">
+                                    </div>
+                                    <div class="col s12 m4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

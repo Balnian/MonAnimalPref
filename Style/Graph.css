@@ -1,0 +1,17 @@
+.meter-gauge {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: whiteSmoke;
+    box-shadow: 0 5px 5px -5px #333 inset;
+    height: 25px;
+    display: block;
+}
+
+.meter-gauge > span {
+    height: inherit;
+    box-shadow: 0 5px 5px -5px #999 inset;
+    background-color: green;
+    background-size: 100% 100%;
+    display: block;
+    text-indent: -9999px;
+}
