@@ -5,22 +5,12 @@
  * Date: 2015-10-29
  * Time: 14:55
  */
+
 include "Fonction.php";
-
-
-$couleur = "Blue";
-if(isset($_COOKIE["Couleur"]))
-{
-    $couleur = $_COOKIE["Couleur"];
-}
-else
-{
-    $expiration = time() + (365*24*60*60);
-    setcookie("Couleur", "Blue", $expiration);
-}
 
 include "/Layout/Layout_Head.php";
 ?>
+
 
     <div class="container">
         <div class="row">
@@ -31,7 +21,18 @@ include "/Layout/Layout_Head.php";
 
                     <?php
 
+                   /* if(isset($_COOKIE["Couleur"]))
+                    {
+                        $couleur = $_COOKIE["Couleur"];
+                    }
+                    else
+                    {
+                        $expiration = time() + (365*24*60*60);
+                        setcookie("Couleur", "Blue", $expiration);
+                    }*/
                     $animaux = GetValuesFromCSV("Animaux.csv");
+                    //$couleur = "Blue";
+                    $asdf="sadsd";
                     $compteur = 0;
                     if(count($animaux)>0){
                         foreach ($animaux as $key => $value){
@@ -44,7 +45,7 @@ include "/Layout/Layout_Head.php";
                                     <td>
                                         <div class="col s10">
                                         <div class="meter-gauge">
-                                            <span style="background-color: rgb(<?php echo GetGraphColor($couleur,$compteur,count($animaux)); $compteur++;  ?>);width:<?php echo round(($value/array_sum($animaux))*100,2,PHP_ROUND_HALF_EVEN); ?>%;"></span>
+                                            <span style="background-color: rgb( <?php echo GetGraphColor($couleur,$compteur,count($animaux)); $compteur++;  ?> );width:<?php echo round(($value/array_sum($animaux))*100,2,PHP_ROUND_HALF_EVEN); ?>%;"></span>
                                         </div>
                                         </div>
                                             <!--<meter value="<?php echo $value; ?>" min="0" max="<?php echo array_sum($animaux); ?>" ><?php echo $value/array_sum($animaux); ?> </meter>-->
