@@ -6,6 +6,10 @@
  * Time: 16:13
  */
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
     ?>
 <!doctype html>
 <html lang="en">
